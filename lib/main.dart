@@ -10,13 +10,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'blueartcrypto.com',
       theme: ThemeData(
-     
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.deepPurple,
+        accentColor: Colors.amber,
+        cardColor: Colors.transparent,
+        textTheme: TextTheme(
+          subtitle1: TextStyle(
+            color: Theme.of(context).accentColor,
+            fontWeight: FontWeight.bold,
+          ),
+          bodyText1: TextStyle(
+            color: Theme.of(context).accentColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        iconTheme: IconThemeData(
+          color: Colors.amber,
+          size: 25,
+        ),
       ),
-      home: Home(),
+      home: HomePage(),
     );
   }
 }
-

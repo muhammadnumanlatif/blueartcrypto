@@ -1,1 +1,3 @@
-export '/pages/home/home.dart';
+export '/pages/home.dart';
+export '/pages/details.dart';
+
