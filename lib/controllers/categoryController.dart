@@ -1,10 +1,8 @@
 import 'dart:async';
 
-import 'package:blueartcrypto/utils/services.dart';
+import '/utils/services.dart';
 
 import '/utils/packages.dart';
-//import '/utils/services.dart';
-import '/utils/utils.dart';
 import '/utils/models.dart';
 
 class CategoryController extends GetxController {

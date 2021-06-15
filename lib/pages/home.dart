@@ -1,8 +1,6 @@
 import 'package:blueartcrypto/pages/news.dart';
 
 import '/utils/packages.dart';
-import '/utils/widgets.dart';
-import '/utils/models.dart';
 import '/utils/utils.dart';
 import '/utils/controllers.dart';
 

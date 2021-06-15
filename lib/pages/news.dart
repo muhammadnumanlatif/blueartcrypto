@@ -1,11 +1,10 @@
-import 'package:blueartcrypto/utils/widgets.dart';
-import 'package:flutter_html/flutter_html.dart';
+import '/utils/widgets.dart';
 
-import 'package:blueartcrypto/utils/controllers.dart';
+import '/utils/controllers.dart';
 
 import '/utils/packages.dart';
-import '/utils/utils.dart';
 
+// ignore: must_be_immutable
 class NewsPage extends StatefulWidget {
   int categoryID;
   bool isReload;

@@ -1,11 +1,8 @@
 import 'dart:async';
 
-import 'package:blueartcrypto/services/newsService.dart';
-import 'package:blueartcrypto/utils/services.dart';
+import '/services/newsService.dart';
 
 import '/utils/packages.dart';
-//import '/utils/services.dart';
-import '/utils/utils.dart';
 import '/utils/models.dart';
 
 class PostsController extends GetxController {
