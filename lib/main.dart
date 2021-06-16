@@ -1,5 +1,6 @@
-import '/utils/packages.dart';
 import '/utils/pages.dart';
+import '/utils/utils.dart';
+import '/utils/packages.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,26 +12,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'blueartcrypto.com',
-      theme: ThemeData(
-        primaryColor: Colors.deepPurple,
-        accentColor: Colors.amber,
-        cardColor: Colors.transparent,
-        textTheme: TextTheme(
-          subtitle1: TextStyle(
-            color: Theme.of(context).accentColor,
-            fontWeight: FontWeight.bold,
-          ),
-          bodyText1: TextStyle(
-            color: Theme.of(context).accentColor,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        iconTheme: IconThemeData(
-          color: Colors.amber,
-          size: 25,
-        ),
-      ),
+      title: BCIUtils.title,
+      themeMode: ThemeMode.system,
+      theme: BCIUtils.lightTheme,
+      darkTheme: BCIUtils.darkTheme,
       home: HomePage(),
     );
   }

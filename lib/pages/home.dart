@@ -1,29 +1,23 @@
-import 'package:blueartcrypto/pages/news.dart';
-
-import '/utils/packages.dart';
 import '/utils/utils.dart';
+import '/utils/pages.dart';
+import '/utils/packages.dart';
 import '/utils/controllers.dart';
 
 class HomePage extends StatefulWidget {
-  //Home({Key? key}) : super(key: key);
-
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  //kList<Widget> tabs = [];
   final CategoryController categoryController = Get.put(CategoryController());
 
   @override
   void initState() {
     super.initState();
-    // 	Altcoin Bitcoin Ethereum MarketAnalysis TrendingCrypto WeeklyOverview
   }
 
   @override
   Widget build(BuildContext context) {
-    //print(categoryController.categoriesList.first);
     return Container(
       color: Theme.of(context).primaryColor,
       child: Obx(

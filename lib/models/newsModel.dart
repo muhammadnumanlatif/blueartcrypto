@@ -1,8 +1,6 @@
-import 'dart:convert';
-
+import '/utils/packages.dart';
 import 'package:intl/intl.dart';
 
-//import 'package:intl/intl.dart';
 List<NewsModel> postsFromJson(String str) => List<NewsModel>.from(
       json.decode(str).map(
             (x) => NewsModel.fromJson(x),
@@ -54,45 +52,3 @@ class NewsModel {
         "post_content": postContent,
       };
 }
-
-// List<NewsModel> postsFromJson(String str) => List<NewsModel>.from(
-//       json.decode(str).map(
-//             (x) => NewsModel.fromJson(x),
-//           ),
-//     );
-// NewsModel postDetailsFromJson(String str) =>
-//     NewsModel.fromJson(json.decode(str));
-
-// class NewsModel {
-//   int? id;
-//   String? title;
-//   String? imageURL;
-//   String? postedDate;
-//   int? categoryId;
-//   String? categoryName;
-//   String? postContent;
-
-//   NewsModel({
-//     this.id,
-//     this.title,
-//     this.imageURL,
-//     this.postedDate,
-//     this.categoryId,
-//     this.categoryName,
-//     this.postContent,
-//   });
-
-//   NewsModel.fromJson(Map<String, dynamic> json) {
-//     id = json['id'];
-//     title = json['title'];
-//     imageURL = json['imageURL'];
-//     postedDate = DateFormat('dd-MM-yyyy').format(
-//       DateTime.parse(json['postedDate']),
-//     );
-//     categoryId = json['categoryId'];
-//     categoryName = json['categoryName'];
-//     if (json['postContent'] != null) {
-//       postContent = json['postContent'];
-//     }
-//   }
-// }

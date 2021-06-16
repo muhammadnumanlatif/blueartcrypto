@@ -1,1 +1,1 @@
-export '../widgets/card-Home.dart';
+export '/widgets/card-Home.dart';

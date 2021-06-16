@@ -1,11 +1,8 @@
+import '/utils/utils.dart';
+import '/utils/packages.dart';
 import 'package:flutter_html/flutter_html.dart';
 
-import '/utils/utils.dart';
-
-import '/utils/packages.dart';
-
 class HomeDetailsPage extends StatelessWidget {
- // const HomeDetailsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

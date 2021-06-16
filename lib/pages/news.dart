@@ -1,8 +1,6 @@
 import '/utils/widgets.dart';
-
-import '/utils/controllers.dart';
-
 import '/utils/packages.dart';
+import '/utils/controllers.dart';
 
 // ignore: must_be_immutable
 class NewsPage extends StatefulWidget {

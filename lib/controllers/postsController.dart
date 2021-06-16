@@ -1,9 +1,7 @@
 import 'dart:async';
-
-import '/services/newsService.dart';
-
-import '/utils/packages.dart';
 import '/utils/models.dart';
+import '/utils/packages.dart';
+import '/services/newsService.dart';
 
 class PostsController extends GetxController {
   RxBool isLoading = true.obs;

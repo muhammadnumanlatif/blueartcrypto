@@ -1,22 +1,20 @@
 import '/utils/pages.dart';
-import '/utils/packages.dart';
 import '/utils/utils.dart';
 import '/utils/models.dart';
+import '/utils/packages.dart';
 
 class NewsCard extends StatelessWidget {
-  //NewsCard({Key? key, this.model}) : super(key: key);
-  //late final CategoryModel? model;
   final NewsModel model;
 
   const NewsCard({
-    Key? key, 
+    Key? key,
     required this.model,
-    }) : super(key: key);
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     //NewsModel modelNews;
     //print(categoryModel?.name!.length);
-    return Card( 
+    return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
@@ -44,7 +42,7 @@ class NewsCard extends StatelessWidget {
                     topRight: Radius.circular(16),
                   ),
                   child: Hero(
-                    tag:  'mainPic',
+                    tag: 'mainPic',
                     child: Image.network(
                       model.imageUrl.toString(),
                     ),

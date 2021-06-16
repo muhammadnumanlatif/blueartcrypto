@@ -1,9 +1,6 @@
-import 'dart:async';
-
-import '/utils/services.dart';
-
-import '/utils/packages.dart';
 import '/utils/models.dart';
+import '/utils/services.dart';
+import '/utils/packages.dart';
 
 class CategoryController extends GetxController {
   RxBool isLoading = true.obs;
