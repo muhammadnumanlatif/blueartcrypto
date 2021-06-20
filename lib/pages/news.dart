@@ -4,7 +4,7 @@ import '/utils/controllers.dart';
 
 // ignore: must_be_immutable
 class NewsPage extends StatefulWidget {
-  int categoryID;
+  int categoryID=1;
   bool isReload;
 
   NewsPage({

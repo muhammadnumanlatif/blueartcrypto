@@ -15,7 +15,7 @@ class HomeDetailsPage extends StatelessWidget {
               iconTheme: Theme.of(context).iconTheme,
               flexibleSpace: FlexibleSpaceBar(
                 background: Hero(
-                  tag: 'mainPic',
+                  tag: 'BCIUtils.crptoImage',
                   child: Image.network(
                     BCIUtils.crptoImage,
                     fit: BoxFit.cover,

@@ -12,14 +12,11 @@ class NewsCard extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    //NewsModel modelNews;
-    //print(categoryModel?.name!.length);
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-      //shadowColor: Theme.of(context).accentColor,
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -42,7 +39,7 @@ class NewsCard extends StatelessWidget {
                     topRight: Radius.circular(16),
                   ),
                   child: Hero(
-                    tag: 'mainPic',
+                    tag: 'BCIUtils.crptoImage',
                     child: Image.network(
                       model.imageUrl.toString(),
                     ),

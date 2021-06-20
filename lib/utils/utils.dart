@@ -52,7 +52,22 @@ class BCIUtils {
 
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Colors.white,
-    accentColor: Colors.black,
+    primaryColor: Colors.black,
+    accentColor: Colors.white,
+    cardColor: Colors.transparent,
+    textTheme: TextTheme(
+      subtitle1: TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+      ),
+      bodyText1: TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    iconTheme: IconThemeData(
+      color: Colors.white,
+      size: 25,
+    ),
   );
 }

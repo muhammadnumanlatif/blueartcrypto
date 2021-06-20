@@ -37,6 +37,13 @@ class _HomePageState extends State<HomePage> {
                 backgroundColor: Theme.of(context).primaryColor,
                 appBar: AppBar(
                   elevation: 0,
+                  title: Text(
+                      BCIUtils.title.toString(),
+                      style: TextStyle(
+                        color: Theme.of(context).accentColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   bottom: TabBar(
                     tabs: categoryController.categoryList
                         .map((model) => tab(model.name))
