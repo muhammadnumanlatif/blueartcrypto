@@ -1,17 +1,19 @@
-import '/utils/widgets.dart';
-import '/utils/packages.dart';
 import '/utils/controllers.dart';
+import '/utils/packages.dart';
+import '/utils/widgets.dart';
 
 // ignore: must_be_immutable
 class NewsPage extends StatefulWidget {
-  int categoryID=1;
+  int categoryID;
   bool isReload;
+  int totalRecords;
 
   NewsPage({
-    Key? key,
-    required this.categoryID,
-    required this.isReload,
-  }) : super(key: key);
+  
+  required this.categoryID,
+  required this.isReload,
+  required this.totalRecords,
+  });
 
   @override
   _NewsPageState createState() => _NewsPageState();
@@ -19,14 +21,32 @@ class NewsPage extends StatefulWidget {
 
 class _NewsPageState extends State<NewsPage> {
   final PostsController postsController = Get.put(PostsController());
-  GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
+  GlobalKey<RefreshIndicatorState> refreshKey =
+      GlobalKey<RefreshIndicatorState>();
+  ScrollController _scrollController = ScrollController();
+  int _page = 1;
+
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () async {
-      await postsController.fetchPosts(
-        categoryId: widget.categoryID,
-      );
+      if (widget.isReload) {
+        await postsController.fetchPosts(
+          categoryId: widget.categoryID,
+          pageNumber: 1,
+          totalRecords: widget.totalRecords,
+        );
+      }
+    });
+    _scrollController.addListener(() async {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        await postsController.fetchPosts(
+          pageNumber: ++_page,
+          totalRecords: widget.totalRecords,
+          categoryId: widget.categoryID,
+        );
+      }
     });
   }
 
@@ -55,7 +75,18 @@ class _NewsPageState extends State<NewsPage> {
             child: ListView.builder(
                 physics: const AlwaysScrollableScrollPhysics(),
                 itemCount: postsController.postsList.length,
+                controller: _scrollController,
                 itemBuilder: (context, index) {
+                  if ((index == postsController.postsList.length -1) &&
+                      postsController.postsList.length < widget.totalRecords) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          Theme.of(context).accentColor,
+                        ),
+                      ),
+                    );
+                  }
                   return NewsCard(model: postsController.postsList[index]);
                 }),
           );

@@ -1,11 +1,17 @@
 import '/utils/utils.dart';
 import '/utils/packages.dart';
+import '/utils/controllers.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 class HomeDetailsPage extends StatelessWidget {
+  final PostDetailController newsDetailController =
+      Get.put(PostDetailController());
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration.zero, () async {
+      await newsDetailController.fetchPostDetail(Get.arguments);
+    });
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: SafeArea(
@@ -13,26 +19,78 @@ class HomeDetailsPage extends StatelessWidget {
           slivers: [
             SliverAppBar(
               iconTheme: Theme.of(context).iconTheme,
-              flexibleSpace: FlexibleSpaceBar(
-                background: Hero(
-                  tag: 'BCIUtils.crptoImage',
-                  child: Image.network(
-                    BCIUtils.crptoImage,
-                    fit: BoxFit.cover,
+              // flexibleSpace: FlexibleSpaceBar(
+              //   background: Hero(
+              //     tag: 'BCIUtils.crptoImage',
+              //     child: Image.network(
+              //       BCIUtils.crptoImage,
+              //       fit: BoxFit.cover,
+              //     ),
+              //   ),
+              // ),
+              title: Container(
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).accentColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  BCIUtils.title,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
+              ),
+              flexibleSpace: FlexibleSpaceBar(
+                background: backgroundImage(context),
               ),
               backgroundColor: Theme.of(context).primaryColor,
               elevation: 0.0,
               expandedHeight: MediaQuery.of(context).size.height * 0.3,
             ),
             SliverFillRemaining(
-              child: detailSection(context),
+              // child: detailSection(context),
+              child: Obx(() {
+                if (newsDetailController.isLoading.value) {
+                  return Center(
+                    child: LinearProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Theme.of(context).accentColor,
+                      ),
+                    ),
+                  );
+                } else {
+                  return detailSection(context);
+                }
+              }),
             ),
           ],
         ),
       ),
     );
+  }
+
+  Widget backgroundImage(BuildContext context) {
+    return Obx(() {
+      if (newsDetailController.isLoading.value) {
+        return Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(
+              Theme.of(context).accentColor,
+            ),
+          ),
+        );
+      } else {
+        return Hero(
+          tag: newsDetailController.postsModel.value.title.toString(),
+          child: Image.network(
+            newsDetailController.postsModel.value.imageUrl.toString(),
+            fit: BoxFit.cover,
+          ),
+        );
+      }
+    });
   }
 
   //*detail section
@@ -49,7 +107,7 @@ class HomeDetailsPage extends StatelessWidget {
             context,
             Icon(Icons.timer),
             Text(
-              '07 June 2021',
+              newsDetailController.postsModel.value.postedDate.toString(),
               style: TextStyle(
                 color: Theme.of(context).accentColor,
                 fontWeight: FontWeight.bold,
@@ -58,7 +116,7 @@ class HomeDetailsPage extends StatelessWidget {
           ),
           BCIUtils.sizedBoxHeight(context, 0.015),
           Text(
-            'AltCoin',
+            newsDetailController.postsModel.value.title.toString(),
             style: TextStyle(
               color: Theme.of(context).accentColor.withOpacity(0.5),
               fontWeight: FontWeight.bold,
@@ -72,11 +130,49 @@ class HomeDetailsPage extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Html(
-              style: {
-                //'p': Colors.amber,
-              },
-              data: "<p>Description</p>",
+            child: ListView(
+              children: [
+                Html(
+                  style: {
+                    "p": Style(
+                      fontSize: FontSize.large,
+                      color: Colors.amber,
+                    ),
+                    "h2": Style(
+                      // fontSize: FontSize.medium,
+                      fontWeight: FontWeight.bold,
+
+                      fontSize: FontSize.xLarge,
+
+                      color: Colors.amber,
+                    ),
+                    "h3": Style(
+                      // fontSize: FontSize.medium,
+                      fontSize: FontSize.large,
+                      fontWeight: FontWeight.bold,
+
+                      color: Colors.amber,
+                    ),
+                  
+                    "ul": Style(
+                      // fontSize: FontSize.medium,
+                      fontSize: FontSize.large,
+                      fontWeight: FontWeight.bold,
+
+                      color: Colors.amber,
+                    ),
+                    "a": Style(
+                      // fontSize: FontSize.medium,
+                      fontSize: FontSize.large,
+                      fontWeight: FontWeight.bold,
+
+                      // fontWeight: FontWeight.bold,
+                      color: Colors.amber,
+                    ),
+                  },
+                  data: newsDetailController.postsModel.value.postContent.toString(),
+                ),
+              ],
             ),
           ),
         ],
@@ -98,7 +194,7 @@ class HomeDetailsPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Text(
-              'Altcoin',
+              newsDetailController.postsModel.value.categoryName.toString(),
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.bold,
@@ -106,18 +202,18 @@ class HomeDetailsPage extends StatelessWidget {
             ),
           ),
         ),
-        Align(
-          alignment: Alignment.topLeft,
-          child: Row(
-            children: [
-              //*day night
-              Icon(Icons.lightbulb),
-              BCIUtils.sizedBoxWidth(context, 0.05),
-              Icon(Icons.bookmark),
-              BCIUtils.sizedBoxWidth(context, 0.05),
-            ],
-          ),
-        ),
+        // Align(
+        //   alignment: Alignment.topLeft,
+        //   child: Row(
+        //     children: [
+        //       //*day night
+        //       Icon(Icons.lightbulb),
+        //       BCIUtils.sizedBoxWidth(context, 0.05),
+        //       Icon(Icons.bookmark),
+        //       BCIUtils.sizedBoxWidth(context, 0.05),
+        //     ],
+        //   ),
+        // ),
       ],
     );
   }

@@ -19,12 +19,13 @@ class NewsCard extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomeDetailsPage(),
-            ),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => HomeDetailsPage(),
+          //   ),
+          // );
+          Get.to(()=>HomeDetailsPage(), arguments: model.id);
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -39,7 +40,7 @@ class NewsCard extends StatelessWidget {
                     topRight: Radius.circular(16),
                   ),
                   child: Hero(
-                    tag: 'BCIUtils.crptoImage',
+                    tag: model.title.toString(),
                     child: Image.network(
                       model.imageUrl.toString(),
                     ),
@@ -105,7 +106,7 @@ class NewsCard extends StatelessWidget {
                             color: Theme.of(context).primaryColor,
                           ),
                           Text(
-                            model.postDate.toString(),
+                            model.postedDate.toString(),
                             style: TextStyle(
                               color: Theme.of(context).primaryColor,
                               fontWeight: FontWeight.bold,

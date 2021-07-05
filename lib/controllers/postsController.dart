@@ -14,13 +14,28 @@ class PostsController extends GetxController {
   }
 
 //https://
-  Future<void> fetchPosts({int categoryId=1}) async {
+  Future<void> fetchPosts({
+    int categoryId = 1,
+    int pageNumber = 0,
+    int totalRecords = 1,
+  }) async {
     try {
       isLoading(true);
-      var posts = await NewsService.fetchPosts(categoryId);
+
+      if (postsList.length == 0 || pageNumber == 0) {
+        isLoading(true);
         postsList.clear();
-      if (posts.length>0) {
-        postsList.addAll(posts);
+      }
+
+      if (postsList.length < totalRecords) {
+        var posts = await NewsService.fetchPosts(
+          pageNumber,
+          categoryId,
+        );
+        postsList.clear();
+        if (posts.length >0) {
+          postsList.addAll(posts);
+        }
       }
     } finally {
       isLoading(false);

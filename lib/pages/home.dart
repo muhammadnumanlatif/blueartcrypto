@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,16 +37,24 @@ class _HomePageState extends State<HomePage> {
                 backgroundColor: Theme.of(context).primaryColor,
                 appBar: AppBar(
                   elevation: 0,
+                  centerTitle: true,
+                  leading: Padding(
+          padding: const EdgeInsets.only(left: 12),
+          child: Image.asset(
+            "assets/blueartcrypto.png",
+          ),
+                  ),
                   title: Text(
-                      BCIUtils.title.toString(),
-                      style: TextStyle(
-                        color: Theme.of(context).accentColor,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    BCIUtils.title.toString(),
+                    style: TextStyle(
+                      color: Theme.of(context).accentColor,
+                      fontWeight: FontWeight.bold,
                     ),
+                  ),
+
                   bottom: TabBar(
                     tabs: categoryController.categoryList
-                        .map((model) => tab(model.name))
+                        .map((model) => tab(model.categoryName))
                         .toList(),
                     isScrollable: true,
                     labelColor: Theme.of(context).accentColor,
@@ -54,28 +62,14 @@ class _HomePageState extends State<HomePage> {
                     unselectedLabelColor:
                         Theme.of(context).accentColor.withOpacity(0.5),
                   ),
-                  actions: [
-                    //*search
-                    Icon(
-                      Icons.search,
-                      color: Theme.of(context).iconTheme.color,
-                    ),
-                    BCIUtils.sizedBoxWidth(context, 0.1),
-
-                    //*notify
-                    Icon(
-                      Icons.notifications,
-                      color: Theme.of(context).iconTheme.color,
-                    ),
-                    BCIUtils.sizedBoxWidth(context, 0.1),
-                  ],
                 ),
                 body: TabBarView(
                   children: categoryController.categoryList
                       .map(
                         (model) => NewsPage(
-                          categoryID: model.id,
+                          categoryID: model.categoryId,
                           isReload: true,
+                          totalRecords: model.count,
                         ),
                       )
                       .toList(),

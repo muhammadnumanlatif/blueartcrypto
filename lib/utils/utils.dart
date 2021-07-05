@@ -22,8 +22,8 @@ class BCIUtils {
   static String apiURL = "https://blueartcrypto.com/wp-json/wp/v2/";
   static String categoryURL = "categories";
   static String postsURL =
-      "https://blueartcrypto.com/wp-json/wp/v2/latest-posts/?category_id=";
-  static String postDetailsURL = "post-details?id=";
+      "https://blueartcrypto.com/wp-json/wp/v2/latest-posts/?page_size=5&category_id=";
+  static String postDetailsURL = "https://blueartcrypto.com/wp-json/wp/v2/post-details?id=";
   static String dateFormat = "dd-MMM-yyyy";
 
   static const crptoImage =
