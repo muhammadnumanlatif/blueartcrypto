@@ -1,4 +1,4 @@
 # blueartcrypto
 
 
-![blueartcrpyto.com](blueartcrpyto.com)
+![blueartcrpyto.com](Screenshot_1626721239.png)
